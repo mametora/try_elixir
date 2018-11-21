@@ -1,8 +1,7 @@
 defmodule MyList do
-  def span(from, to), do: Enum.to_list from..to
-end
+  defp span(from, to, list) when from > to,  do: span(from - 1, to, list ++ [from])
+  defp span(from, to, list) when from < to,  do: span(from + 1, to, list ++ [from])
+  defp span(from, to, list) when from == to, do: list ++ [from]
 
-"""
-[1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
-iex(6)> MyList.span 1, 10
-"""
+  def span(from, to), do: span(from, to, [])
+end
